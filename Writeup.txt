@@ -1,0 +1,30 @@
+<
+ Yash Kumar Jain(201201080)
+>
+
+COMP 221 Project 5: Malloc Dynamic Memory Allocator
+<10 March 2014>
+
+
+DESCRIPTION
+
+<This code of malloc uses the explict free list of allocation. In that way we will increase the the speed of code execution.>
+
+DESIGN
+
+<The design of allocating is that of explict as defiend above. We have created a linked list of all free blocks. If we allocate a block, we delete it from linked list of free blocks by function mm_delete and if a allocated block is freed , then we insert it to the free list using mm_add function.
+
+ we use the  4 byte to store the address of previous free block and another 4 bytes to store the adderss of next free block . In that way we may only jump in between free blocks and not even look at allocated blocks .This will increase the throughput of allocation to great extent.Because in the loop for find fit function we will only traverse on the free blocks for appropriate size of malloc request. 
+
+On finding no block to fit the size of allocation , we increase the heap size to CHUNKSIZE.
+
+We  created 3 functions to check the error conditions of 2 contigous block of free list, Secondly we checked whether the free list pointer actually points to a free block in free list and 3) check if the free blocks exist in free list or not.
+>
+
+
+TESTING STRATEGY
+<
+Initially, our code was not working for all files, then we tested the code for each file individually by using gdb debugger. We removed footers  .We compared the output of our code with the output of default code provided .We also tried to use best fit strategy instead of first fit, but instead the throughput was decreasing,therefore we removed the best fit. 
+When we were able to remove all bugs, then we tested all files, but output was not satisfactory. However when we increased the size allocated when no fit found to CHUNKSIZE(2^12) The output increased to 90 and without any errors and was compiling for all files. 
+This made us to conclude the final code.
+>
